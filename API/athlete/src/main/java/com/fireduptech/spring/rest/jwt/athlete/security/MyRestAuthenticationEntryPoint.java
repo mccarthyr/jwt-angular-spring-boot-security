@@ -31,7 +31,7 @@ public final class MyRestAuthenticationEntryPoint implements AuthenticationEntry
         writer.write( " ---> THIS IS FROM MY MY_REST_AUTHENTICATION_ENTRY_POINT" );
         writer.flush();
         */
-        
+
     }
 
 }

@@ -1,6 +1,7 @@
 package com.fireduptech.spring.rest.jwt.athlete.security;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +42,14 @@ public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucce
         clearAuthenticationAttributes( request );
 
         // NOTE: The parent class would have redirection logic here that is not required in a REST system
+
+
+        PrintWriter writer = response.getWriter();
+        writer.write( "======> THIS IS FROM THE SUCCESSFUL AUTHENTICATION HANDLER! <======" );
+        writer.flush();
+
+
+
     }
 
 

@@ -7,7 +7,7 @@ import com.fireduptech.spring.rest.jwt.athlete.domain.AthleteAccount;
 
 public interface AthleteAccountService {
 
-    @PreAuthorize( " hasAnyRole( 'ROLE_ATHLETE' ) " )
+    //@PreAuthorize( " hasAnyRole( 'ROLE_ATHLETE' ) " )
     AthleteAccount getAthleteAccount( int athleteAccountId );
 
     // JPA Retrieval

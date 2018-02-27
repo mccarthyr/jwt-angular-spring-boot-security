@@ -13,6 +13,14 @@ import com.fireduptech.spring.rest.jwt.athlete.security.MyAuthenticationSuccessH
 import com.fireduptech.spring.rest.jwt.athlete.security.MyAuthenticationFailureHandler;
 import com.fireduptech.spring.rest.jwt.athlete.security.MyLogoutSuccessHandler;
 
+import org.springframework.security.config.http.SessionCreationPolicy;
+
+import com.fireduptech.spring.rest.jwt.athlete.security.JwtAuthenticationFilter;
+import com.fireduptech.spring.rest.jwt.athlete.security.JwtAuthorisationFilter;
+
+
+import org.springframework.security.authentication.AuthenticationManager;
+
 
 @Configuration
 @EnableWebSecurity
@@ -32,7 +40,59 @@ public class WebRequestSecurityConfig extends WebSecurityConfigurerAdapter {
     MyLogoutSuccessHandler myLogoutSuccessHandler;
 
 
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+
     @Override
+    protected void configure( HttpSecurity http ) throws Exception {
+
+        http.csrf().disable().cors()
+                .and()
+                .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS )
+                .and()
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and().formLogin().permitAll()
+                .and().formLogin().successHandler( myAuthenticationSuccessHandler )
+                .and().formLogin().failureHandler( myAuthenticationFailureHandler )
+                .and().logout().logoutSuccessHandler( myLogoutSuccessHandler )
+                .and().exceptionHandling().authenticationEntryPoint( myRestAuthenticationEntryPoint )
+                .and()
+                .addFilter( new JwtAuthenticationFilter( authenticationManager ) )
+                .addFilter( new JwtAuthorisationFilter( authenticationManager ) );
+
+
+    }   // End of method configure()...
+
+
+
+
+    /*
+    @Override
+    protected void configure( HttpSecurity http ) throws Exception {
+
+        http.csrf().disable().cors()
+                .and()
+                .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS )
+                .and()
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and().formLogin().permitAll()
+                .and().formLogin().successHandler( myAuthenticationSuccessHandler )
+                .and().formLogin().failureHandler( myAuthenticationFailureHandler )
+                .and().logout().logoutSuccessHandler( myLogoutSuccessHandler )
+                .and().exceptionHandling().authenticationEntryPoint( myRestAuthenticationEntryPoint );
+
+
+    }
+    */
+
+
+
+    /*
+        @Override
     protected void configure( HttpSecurity http ) throws Exception {
 
         http.csrf().disable().authorizeRequests()
@@ -44,5 +104,6 @@ public class WebRequestSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().exceptionHandling().authenticationEntryPoint( myRestAuthenticationEntryPoint );
 
     }
+     */
 
 }

@@ -2,3 +2,36 @@
   athlete works!
 </p>
 
+<div *ngIf = "athleteDetails">
+
+<div class = "row">
+	<div class = "col">
+		<table class="table table-hover table-striped">
+			<thead class = "thead-inverse">
+				<tr>
+					<th>ID</th>
+					<th>Email</th>
+					<th>Firstname</th>
+					<th>Lastname</th>
+					<th>Account Type</th>
+					<th>Primary Activity</th>
+					<th>Registration Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ athleteDetails.id  }}</td>
+					<td>{{ athleteDetails.email }}</td>
+					<td>{{ athleteDetails.firstName }}</td>
+					<td>{{ athleteDetails.lastName }}</td>
+					<td>{{ athleteDetails.accountType }}</td>
+					<td>{{ athleteDetails.primaryActivity }}</td>
+					<td>{{ formattedRegistrationDate | date: "medium" }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+</div>
+

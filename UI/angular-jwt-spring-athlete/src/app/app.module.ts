@@ -1,17 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BrowserModule }         from '@angular/platform-browser';
+import { NgModule }              from '@angular/core';
+import { FormsModule }           from '@angular/forms';
+import { HttpModule }            from '@angular/http';
 
-import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AppRoutingModule } from './/app-routing.module';
-import { AthleteComponent } from './athlete/athlete.component';
-import { LoginComponent } from './login/login.component';
+import { AppComponent }          from './app.component';
+import { DashboardComponent }    from './dashboard/dashboard.component';
+import { AppRoutingModule }      from './/app-routing.module';
+import { AthleteComponent }      from './athlete/athlete.component';
+import { LoginComponent }        from './login/login.component';
 import { AuthenticationService } from './authentication.service';
-import { AthleteService } from './athlete.service';
+import { AthleteService }        from './athlete.service';
+import { AuthGuard }             from './auth_guards/auth.guard';
 
 import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -27,9 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpModule,
     HttpClientModule
-
   ],
-  providers: [AuthenticationService, AthleteService],
+  providers: [AuthenticationService, AthleteService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

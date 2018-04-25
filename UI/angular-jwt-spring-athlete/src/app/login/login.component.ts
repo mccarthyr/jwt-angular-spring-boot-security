@@ -43,35 +43,14 @@ export class LoginComponent implements OnInit {
   		.subscribe(
   			data => {
   				this.router.navigate( [this.returnUrl] );
-  				  	this.authenticationService.test()  // NOTE - THIS IS JUST TEMPORARILY HERE - MOVE THIS INTO ITS OWN CALL FROM THE ATHLETE'S LINK...
-				  		.subscribe(
-				  			data => {
-				  				console.log("Successfully returned");
-				  			},
-				  			error => {
-				  				console.log( error );
-				  				console.log( "---> THIS ERROR IS COMING FROM THE LOGIN COMPONENT SECTION <---" );
-				  				this.loading = false;
-				  			}
-				  			);
-
   			},
   			error => {
   				alert(error);
   				console.log( error );
-  				console.log( "---> THIS ERROR IS COMING FROM THE LOGIN COMPONENT SECTION <---" );
   				this.loading = false;
   			}
   			);
-
-
-
-
-
   }
 
 
-
 }
-
-
